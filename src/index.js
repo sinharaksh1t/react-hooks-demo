@@ -13,6 +13,8 @@ import { CustomHook } from './hooks/UseCustomHooks';
 import PokemonInfo from './hooks/UseReducerExample';
 import Progress from './animations/Progress';
 import Fade from './animations/Fade';
+import UseHooksExample from './hooks/UseHooksExample';
+import UseClassesExample from './hooks/UseClassesExample';
 
 const VISIBLE = {
   IS_USE_STATE_VISIBLE: 'UseStateExample',
@@ -22,16 +24,18 @@ const VISIBLE = {
   IS_USE_REDUCER_VISIBLE: 'UseReducerExample',
   IS_REACT_SPRING_1_VISIBLE: 'Progress',
   IS_REACT_SPRING_2_VISIBLE: 'Fade',
+  IS_USE_HOOKS: 'UseHooksExample',
 };
 
 const App = () => {
   const state = {
     isVisible: [
-      VISIBLE.IS_USE_STATE_VISIBLE,
-      VISIBLE.IS_USE_CONTEXT_VISIBLE,
-      VISIBLE.IS_USE_EFFECT_VISIBLE,
-      VISIBLE.IS_USE_CUSTOM_HOOKS_VISIBLE,
-      VISIBLE.IS_USE_REDUCER_VISIBLE,
+      VISIBLE.IS_USE_HOOKS,
+      // VISIBLE.IS_USE_STATE_VISIBLE,
+      // VISIBLE.IS_USE_CONTEXT_VISIBLE,
+      // VISIBLE.IS_USE_EFFECT_VISIBLE,
+      // VISIBLE.IS_USE_CUSTOM_HOOKS_VISIBLE,
+      // VISIBLE.IS_USE_REDUCER_VISIBLE,
     ],
   };
 
@@ -41,6 +45,20 @@ const App = () => {
 
   return (
     <div>
+      <Section
+        isVisible={isVisible.includes(VISIBLE.IS_USE_HOOKS)}
+        heading="useHooks"
+        sectionBg="example-gradient-bg"
+      >
+        <div>
+          {HOOKS_HEADING}
+          <UseHooksExample />
+        </div>
+        <div>
+          {CLASSES_HEADING}
+          <UseClassesExample />
+        </div>
+      </Section>
       <Section
         isVisible={isVisible.includes(VISIBLE.IS_USE_STATE_VISIBLE)}
         heading="useState"
