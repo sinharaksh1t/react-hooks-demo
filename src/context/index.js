@@ -2,14 +2,14 @@ import { createContext } from 'react';
 
 export const ThemeContext = createContext({
   theme: {
-    dark: 'purple-bg',
-    light: 'gainsboro-bg',
+    dark: 'dark-theme',
+    light: 'light-theme',
   },
 });
 
 export const LocaleContext = createContext({
   locale: {
-    local: '🚩',
-    foreign: '🎌',
+    local: '🇺🇸',
+    foreign: '🇯🇵',
   },
 });
