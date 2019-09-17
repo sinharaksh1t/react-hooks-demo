@@ -80,7 +80,6 @@ const App = () => {
         </div>
         <div>
           {CLASSES_HEADING}
-          <h1 className="heading">old way</h1>
           <TitleClass />
         </div>
       </Section>
