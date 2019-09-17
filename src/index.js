@@ -48,7 +48,7 @@ const App = () => {
       <Section
         isVisible={isVisible.includes(VISIBLE.IS_USE_HOOKS)}
         heading="useHooks"
-        sectionBg="dark-theme"
+        sectionBg="example-gradient-bg"
       >
         <div>
           {HOOKS_HEADING}
