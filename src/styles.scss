@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Comfortaa:400,700');
 
 body {
-  font-family: 'Comfortaa', cursive;
-  background-color: #FFEB3B;
+  font-family: 'Avantgarde';
+  background: rgb(2,0,36);
+  background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(21,21,47,1) 64%, rgba(33,55,60,1) 100%);
   margin-bottom: 50px;
   padding: 0;
   margin: 0;
 }
 
 .main-heading {
-  font-size: 22px;
+  font-size: 32;
   padding-left: 5px;
+  color: silver;
 }
 
 .section {
@@ -19,15 +21,15 @@ body {
   align-items: flex-start;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 10px;
+  padding: 30px;
 }
 
 .section div {
-  width: 400px;
+  width: 800px;
 }
 
 .section .heading {
-  font-size: 45px;
+  font-size: 65px;
   font-weight: 700;
   margin: 0 4px;
 }
@@ -40,7 +42,7 @@ body {
 }
 
 .row span {
-  font-size: 18px;
+  font-size: 30px;
   font-weight: 700;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -48,7 +50,8 @@ body {
 }
 
 .row input {
-  padding: 10px;
+  font-size: 1rem;
+  padding: 15px;
   outline: 0;
   border: 0;
   transition: 150ms ease-in;
@@ -63,15 +66,8 @@ body {
 }
 
 // colors
-.purple-bg {
-  background-color: purple;
+.example-gradient-bg {
+  background: rgb(92,54,166);
+background: linear-gradient(90deg, rgba(92,54,166,1) 0%, rgba(65,29,24,1) 58%, rgba(65,47,24,1) 90%);
   color: white;
-}
-
-.gainsboro-bg {
-  background-color: gainsboro;
-}
-
-.white-bg {
-  background-color: white;
 }
