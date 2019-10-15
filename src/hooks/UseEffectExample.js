@@ -1,104 +1,49 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React from 'react';
+import { ThemeContext, LocaleContext } from '../context';
 
-export class TitleClass extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: 'Bilbo Baggins',
-      age: 25,
-      width: window.innerWidth,
-    };
-    this.onHandleNameChange = this.onHandleNameChange.bind(this);
-    this.onHandleAgeChange = this.onHandleAgeChange.bind(this);
-    this.onHandleResize = this.onHandleResize.bind(this);
-  }
+const UseContextExample = () => {
+  const [name, setName] = React.useState('Laryr');
+  const [surname, setSurname] = React.useState('ellison');
+  const { theme } = React.useContext(ThemeContext);
+  const { locale } = React.useContext(LocaleContext);
 
-  componentDidMount() {
-    const { name, age } = this.state;
-    document.title = `${name} | ${age}`;
-    window.addEventListener('resize', this.onHandleResize);
-  }
-
-  componentDidUpdate() {
-    const { name, age } = this.state;
-    document.title = `${name} | ${age}`;
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.onHandleResize);
-  }
-
-  onHandleNameChange(e) {
-    this.setState({
-      name: e.target.value,
-    });
-  }
-
-  onHandleAgeChange(e) {
-    this.setState({
-      age: e.target.value,
-    });
-  }
-
-  onHandleResize() {
-    this.setState({ width: window.innerWidth });
-  }
-
-  render() {
-    const { name, age, width } = this.state;
-    return (
-      <Fragment>
-        <section className="row">
-          <span>Name</span>
-          <input type="text" value={name} onChange={this.onHandleNameChange} />
-        </section>
-        <section className="row">
-          <span>Age</span>
-          <input type="text" value={age} onChange={this.onHandleAgeChange} />
-        </section>
-        <section className="row">
-          <span>Width</span>
-          <input type="text" value={width} disabled />
-        </section>
-      </Fragment>
-    );
-  }
-}
-
-export function Title() {
-  const [name, setName] = useState('Albus Dumbledore');
-  const [age, setAge] = useState(175);
-  useEffect(() => {
-    document.title = `${name} | ${age}`;
-  });
-  const [height, setHeight] = useState(window.innerHeight);
-  useEffect(() => {
-    const handleResize = () => setHeight(window.innerHeight);
+  const [width, setWidth] = React.useState(window.innerWidth);
+  React.useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   });
-  function handleNameChange(e) {
+
+  const handleNameChange = e => {
     setName(e.target.value);
-  }
-  function handleAgeChange(e) {
-    setAge(e.target.value);
-  }
+  };
+
+  const handleSurnameChange = e => {
+    setSurname(e.target.value);
+  };
+
   return (
-    <Fragment>
-      <section className="row">
+    <React.Fragment>
+      <section className={`row ${theme.dark}`}>
         <span>Name</span>
-        <input type="text" value={name} onChange={handleNameChange} />
+        <input value={name} onChange={handleNameChange} />
       </section>
-      <section className="row">
-        <span>Age</span>
-        <input type="text" value={age} onChange={handleAgeChange} />
+      <section className={`row ${theme.light}`}>
+        <span>Surname</span>
+        <input value={surname} onChange={handleSurnameChange} />
       </section>
-      <section className="row">
-        <span>Height</span>
-        <input type="text" value={height} disabled />
+      <section className={`row ${theme.dark}`}>
+        <span>Locale</span>
+        <input value={locale.foreign} />
       </section>
-    </Fragment>
+      <section className={`row ${theme.light}`}>
+        <span>Width</span>
+        <input value={width} type="text" disabled />
+      </section>
+    </React.Fragment>
   );
-}
+};
+
+export default UseContextExample;

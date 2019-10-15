@@ -5,33 +5,37 @@ import ReactDOM from 'react-dom';
 import './styles.scss';
 // Helpers
 import Section from './helpers/Section';
-// Examples
-import { Greeting, GreetingClass } from './hooks/UseStateExample';
-import { Context, ContextClass } from './hooks/UseContextExample';
-import { Title, TitleClass } from './hooks/UseEffectExample';
-import { CustomHook } from './hooks/UseCustomHooks';
-import PokemonInfo from './hooks/UseReducerExample';
-import Progress from './animations/Progress';
-import Fade from './animations/Fade';
+
+// Hooks import
+import UseState1Example from './hooks/UseState1Example';
+import UseState2Example from './hooks/UseState2Example';
+import UseContextExample from './hooks/UseContextExample';
+import UseEffectExample from './hooks/UseEffectExample';
+import UseYourOwnHookExample from './hooks/UseYourOwnHookExample';
+
+// Classes Import
+import ClassesState1Example from './hooks/ClassesState1Example';
+import ClassesState2Example from './hooks/ClassesState2Example';
+import ClassesContextExample from './hooks/ClassesContextExample';
+import ClassesEffectExample from './hooks/ClassesEffectExample';
 
 const VISIBLE = {
-  IS_USE_STATE_VISIBLE: 'UseStateExample',
-  IS_USE_CONTEXT_VISIBLE: 'UseContextExample',
-  IS_USE_EFFECT_VISIBLE: 'UseEffectExample',
-  IS_USE_CUSTOM_HOOKS_VISIBLE: 'UseCustomHooks',
-  IS_USE_REDUCER_VISIBLE: 'UseReducerExample',
-  IS_REACT_SPRING_1_VISIBLE: 'Progress',
-  IS_REACT_SPRING_2_VISIBLE: 'Fade',
+  IS_USE_STATE1: 'UseHooksExample',
+  IS_USE_STATE2: 'UseState2Example',
+  IS_USE_CONTEXT: 'UseContextExample',
+  IS_USE_EFFECT: 'UseEffectExample',
+  IS_USE_YOUR_OWN_HOOK: 'UseYourOwnHookExample',
 };
 
 const App = () => {
   const state = {
     isVisible: [
-      VISIBLE.IS_USE_STATE_VISIBLE,
-      VISIBLE.IS_USE_CONTEXT_VISIBLE,
-      VISIBLE.IS_USE_EFFECT_VISIBLE,
-      VISIBLE.IS_USE_CUSTOM_HOOKS_VISIBLE,
-      VISIBLE.IS_USE_REDUCER_VISIBLE,
+      VISIBLE.IS_USE_STATE1,
+      // VISIBLE.IS_USE_STATE2,
+      // VISIBLE.IS_USE_CONTEXT,
+      // VISIBLE.IS_USE_EFFECT,
+      // VISIBLE.IS_USE_YOUR_OWN_HOOK,
+      // VISIBLE.IS_USE_REDUCER_VISIBLE,
     ],
   };
 
@@ -42,80 +46,74 @@ const App = () => {
   return (
     <div>
       <Section
-        isVisible={isVisible.includes(VISIBLE.IS_USE_STATE_VISIBLE)}
-        heading="useState"
+        isVisible={isVisible.includes(VISIBLE.IS_USE_STATE1)}
+        heading="useState1"
         sectionBg="example-gradient-bg"
       >
         <div>
-          {HOOKS_HEADING}
-          <Greeting />
+          {CLASSES_HEADING}
+          <ClassesState1Example />
         </div>
         <div>
-          {CLASSES_HEADING}
-          <GreetingClass />
+          {HOOKS_HEADING}
+          <UseState1Example />
         </div>
       </Section>
       <Section
-        isVisible={isVisible.includes(VISIBLE.IS_USE_CONTEXT_VISIBLE)}
+        isVisible={isVisible.includes(VISIBLE.IS_USE_STATE2)}
+        heading="useState2"
+        sectionBg="example-gradient-bg"
+      >
+        <div>
+          {CLASSES_HEADING}
+          <ClassesState2Example />
+        </div>
+        <div>
+          {HOOKS_HEADING}
+          <UseState2Example />
+        </div>
+      </Section>
+      <Section
+        isVisible={isVisible.includes(VISIBLE.IS_USE_CONTEXT)}
         heading="useContext"
         sectionBg="example-gradient-bg"
       >
         <div>
-          {HOOKS_HEADING}
-          <Context />
+          {CLASSES_HEADING}
+          <ClassesContextExample />
         </div>
         <div>
-          {CLASSES_HEADING}
-          <ContextClass />
+          {HOOKS_HEADING}
+          <UseContextExample />
         </div>
       </Section>
       <Section
-        isVisible={isVisible.includes(VISIBLE.IS_USE_EFFECT_VISIBLE)}
+        isVisible={isVisible.includes(VISIBLE.IS_USE_EFFECT)}
         heading="useEffect"
         sectionBg="example-gradient-bg"
       >
         <div>
-          {HOOKS_HEADING}
-          <Title />
+          {CLASSES_HEADING}
+          <ClassesEffectExample />
         </div>
+        <div>
+          {HOOKS_HEADING}
+          <UseEffectExample />
+        </div>
+      </Section>
+      <Section
+        isVisible={isVisible.includes(VISIBLE.IS_USE_YOUR_OWN_HOOK)}
+        heading="useYourOwnHook"
+        sectionBg="example-gradient-bg"
+      >
         <div>
           {CLASSES_HEADING}
-          <TitleClass />
+          <p>No custom hooks in classes :(</p>
         </div>
-      </Section>
-      <Section
-        isVisible={isVisible.includes(VISIBLE.IS_USE_CUSTOM_HOOKS_VISIBLE)}
-        heading="useCustomHooks"
-        sectionBg="example-gradient-bg"
-      >
         <div>
           {HOOKS_HEADING}
-          <CustomHook />
+          <UseYourOwnHookExample />
         </div>
-      </Section>
-      <Section
-        isVisible={isVisible.includes(VISIBLE.IS_USE_REDUCER_VISIBLE)}
-        heading="useReducer"
-        sectionBg="example-gradient-bg"
-      >
-        <div>
-          <h1 className="heading">Count Example</h1>
-          <PokemonInfo />
-        </div>
-      </Section>
-      <Section
-        isVisible={isVisible.includes(VISIBLE.IS_REACT_SPRING_1_VISIBLE)}
-        heading="React Spring Progress Bar Example"
-        sectionBg="gainsboro-bg"
-      >
-        <Progress />
-      </Section>
-      <Section
-        isVisible={isVisible.includes(VISIBLE.IS_REACT_SPRING_2_VISIBLE)}
-        heading="React Spring Fade Bar Example"
-        sectionBg="gainsboro-bg"
-      >
-        <Fade />
       </Section>
     </div>
   );
