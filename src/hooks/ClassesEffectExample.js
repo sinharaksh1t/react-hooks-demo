@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeContext, LocaleContext } from '../context';
 
-class UseClassesExample extends React.PureComponent {
+class ClassesEffectExample extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,28 +11,26 @@ class UseClassesExample extends React.PureComponent {
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSurnameChange = this.handleSurnameChange.bind(this);
-    this.handleResize = this.handleResize.bind(this);
+    this.onHandleResize = this.onHandleResize.bind(this);
   }
 
   componentDidMount() {
-    const { name, surname } = this.state;
-    document.title = `${name} ${surname}`;
-    window.addEventListener('resize', this.handleResize);
+    const { name, age } = this.state;
+    document.title = `${name} | ${age}`;
+    window.addEventListener('resize', this.onHandleResize);
   }
 
   componentDidUpdate() {
-    const { name, surname } = this.state;
-    document.title = `${name} ${surname}`;
+    const { name, age } = this.state;
+    document.title = `${name} | ${age}`;
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener('resize', this.onHandleResize);
   }
 
-  handleResize() {
-    this.setState({
-      width: window.innerWidth,
-    });
+  onHandleResize() {
+    this.setState({ width: window.innerWidth });
   }
 
   handleNameChange(e) {
@@ -55,31 +53,24 @@ class UseClassesExample extends React.PureComponent {
           <React.Fragment>
             <section className={`row ${theme.dark}`}>
               <span>Name</span>
-              <input
-                type="text"
-                value={name}
-                onChange={this.handleNameChange}
-              />
+              <input value={name} onChange={this.handleNameChange} />
             </section>
             <section className={`row ${theme.light}`}>
               <span>Surname</span>
-              <input
-                type="text"
-                value={surname}
-                onChange={this.handleSurnameChange}
-              />
+              <input value={surname} onChange={this.handleSurnameChange} />
             </section>
             <LocaleContext.Consumer>
               {({ locale }) => (
                 <section className={`row ${theme.dark}`}>
-                  <span>Language</span>
-                  <input type="text" value={locale.local} />
+                  {' '}
+                  <span>Locale</span>
+                  <input value={locale.local} />
                 </section>
               )}
             </LocaleContext.Consumer>
             <section className={`row ${theme.light}`}>
               <span>Width</span>
-              <input value={width} />
+              <input type="text" value={width} disabled />
             </section>
           </React.Fragment>
         )}
@@ -88,4 +79,4 @@ class UseClassesExample extends React.PureComponent {
   }
 }
 
-export default UseClassesExample;
+export default ClassesEffectExample;

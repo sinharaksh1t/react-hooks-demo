@@ -1,63 +1,53 @@
 import React from 'react';
 import { ThemeContext, LocaleContext } from '../context';
 
-const useWindowWidth = () => {
+const UseHooksExample = () => {
+  const [name, setName] = React.useState('Laryr');
+  const [surname, setSurname] = React.useState('ellison');
+  const { theme } = React.useContext(ThemeContext);
+  const { locale } = React.useContext(LocaleContext);
+
+  React.useEffect(() => {
+    document.title = `${name} ${surname}`;
+  });
+
   const [width, setWidth] = React.useState(window.innerWidth);
   React.useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   });
-  return width;
-};
-
-const useDocumentTitle = title => {
-  React.useEffect(() => {
-    document.title = title;
-  });
-};
-
-const useFormInput = initialValue => {
-  const [value, setValue] = React.useState(initialValue);
 
   const handleNameChange = e => {
-    setValue(e.target.value);
+    setName(e.target.value);
   };
 
-  return {
-    value,
-    onChange: handleNameChange,
+  const handleSurnameChange = e => {
+    setSurname(e.target.value);
   };
-};
-
-const useHooksExample = () => {
-  const name = useFormInput('Rakshit');
-  const surname = useFormInput('Sinha');
-  const { theme } = React.useContext(ThemeContext);
-  const { locale } = React.useContext(LocaleContext);
-  const width = useWindowWidth();
-  useDocumentTitle(`${name.value} ${surname.value}`);
 
   return (
     <React.Fragment>
       <section className={`row ${theme.dark}`}>
         <span>Name</span>
-        <input type="text" {...name} />
+        <input value={name} onChange={handleNameChange} />
       </section>
       <section className={`row ${theme.light}`}>
         <span>Surname</span>
-        <input type="text" {...surname} />
+        <input value={surname} onChange={handleSurnameChange} />
       </section>
       <section className={`row ${theme.dark}`}>
-        <span>Language</span>
-        <input type="text" value={locale.foreign} />
+        <span>Locale</span>
+        <input value={locale.foreign} />
       </section>
       <section className={`row ${theme.light}`}>
         <span>Width</span>
-        <input type="text" value={width} />
+        <input value={width} type="text" disabled />
       </section>
     </React.Fragment>
   );
 };
 
-export default useHooksExample;
+export default UseHooksExample;
